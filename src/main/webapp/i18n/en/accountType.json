@@ -1,0 +1,10 @@
+{
+  "bankuiApp": {
+    "AccountType": {
+      "null": "",
+      "SAVINGS": "SAVINGS",
+      "CHECKING": "CHECKING",
+      "CREDIT": "CREDIT"
+    }
+  }
+}
