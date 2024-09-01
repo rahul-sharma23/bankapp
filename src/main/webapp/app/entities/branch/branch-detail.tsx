@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Button, Row, Col } from 'reactstrap';
+import { Button, Row, Col, Card, CardText, CardTitle, CardBody, CardLink, ListGroup, ListGroupItem } from 'reactstrap';
 import { Translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -63,18 +63,83 @@ export const BranchDetail = () => {
           <dd>{branchEntity.zipCode}</dd>
         </dl>
         <Button tag={Link} to="/branch" replace color="info" data-cy="entityDetailsBackButton">
-          <FontAwesomeIcon icon="arrow-left" />{' '}
+          <FontAwesomeIcon icon="arrow-left" />
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.back">Back</Translate>
           </span>
         </Button>
-        &nbsp;
-        <Button tag={Link} to={`/branch/${branchEntity.id}/edit`} replace color="primary">
-          <FontAwesomeIcon icon="pencil-alt" />{' '}
+        <Button tag={Link} to="/branch/${branchEntity.id}/edit" replace color="primary">
+          <FontAwesomeIcon icon="pencil-alt" />
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
           </span>
         </Button>
+      </Col>
+
+      <Col md="8">
+        <Card
+          style={{
+            width: '18rem',
+          }}
+        >
+          <img alt="Card" src="https://picsum.photos/300/200" />
+          <CardBody>
+            <CardTitle tag="h5">Branch Details</CardTitle>
+            <CardText>This is some text within a card body.</CardText>
+          </CardBody>
+          <ListGroup flush>
+            <ListGroupItem>
+              <span id="id">
+                <Translate contentKey="global.field.id">ID</Translate>
+              </span>
+              <dd>{branchEntity.id}</dd>
+            </ListGroupItem>
+            <ListGroupItem>
+              <dt>
+                <span id="name">
+                  <Translate contentKey="bankuiApp.branch.name">Name</Translate>
+                </span>
+              </dt>
+              <dd>{branchEntity.name}</dd>
+            </ListGroupItem>
+            <ListGroupItem>
+              <dt>
+                <span id="address">
+                  <Translate contentKey="bankuiApp.branch.address">Address</Translate>
+                </span>
+              </dt>
+              <dd>{branchEntity.address}</dd>
+            </ListGroupItem>
+            <ListGroupItem>
+              <dt>
+                <span id="city">
+                  <Translate contentKey="bankuiApp.branch.city">City</Translate>
+                </span>
+              </dt>
+              <dd>{branchEntity.city}</dd>
+            </ListGroupItem>
+            <ListGroupItem>
+              <dt>
+                <span id="state">
+                  <Translate contentKey="bankuiApp.branch.state">State</Translate>
+                </span>
+              </dt>
+              <dd>{branchEntity.state}</dd>
+            </ListGroupItem>
+            <ListGroupItem>
+              <dt>
+                <span id="zipCode">
+                  <Translate contentKey="bankuiApp.branch.zipCode">Zip Code</Translate>
+                </span>
+              </dt>
+              <dd>{branchEntity.zipCode}</dd>
+            </ListGroupItem>
+          </ListGroup>
+          <CardBody>
+            <CardLink href="#">Card Link</CardLink>
+            <CardLink href="#">Another Card Link</CardLink>
+          </CardBody>
+        </Card>
       </Col>
     </Row>
   );
