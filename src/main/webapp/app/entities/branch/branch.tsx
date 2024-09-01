@@ -90,6 +90,9 @@ export const Branch = () => {
                 <th className="hand" onClick={sort('name')}>
                   <Translate contentKey="bankuiApp.branch.name">Name</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('name')} />
                 </th>
+                <th className="hand" onClick={sort('ifsc')}>
+                  IFSC <FontAwesomeIcon icon={getSortIconByFieldName('ifsc')} />
+                </th>
                 <th className="hand" onClick={sort('address')}>
                   <Translate contentKey="bankuiApp.branch.address">Address</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('address')} />
@@ -117,6 +120,7 @@ export const Branch = () => {
                     </Button>
                   </td>
                   <td>{branch.name}</td>
+                  <td>{branch.ifsc}</td>
                   <td>{branch.address}</td>
                   <td>{branch.city}</td>
                   <td>{branch.state}</td>

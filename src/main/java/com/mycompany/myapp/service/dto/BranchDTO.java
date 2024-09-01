@@ -1,5 +1,7 @@
 package com.mycompany.myapp.service.dto;
 
+import com.mycompany.myapp.domain.Branch;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,6 +16,9 @@ public class BranchDTO implements Serializable {
 
     @NotNull
     private String name;
+
+    @NotNull
+    private String ifsc;
 
     @NotNull
     private String address;
@@ -41,6 +46,14 @@ public class BranchDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIfsc() {
+        return ifsc;
+    }
+
+    public void setIfsc(String ifsc) {
+        this.ifsc = ifsc;
     }
 
     public String getAddress() {
@@ -102,6 +115,7 @@ public class BranchDTO implements Serializable {
         return "BranchDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", name='" + getIfsc() + "'" +
             ", address='" + getAddress() + "'" +
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +

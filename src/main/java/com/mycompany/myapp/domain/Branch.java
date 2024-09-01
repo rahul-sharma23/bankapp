@@ -31,6 +31,10 @@ public class Branch implements Serializable {
     private String name;
 
     @NotNull
+    @Column(name = "ifsc", nullable = false)
+    private String ifsc;
+
+    @NotNull
     @Column(name = "address", nullable = false)
     private String address;
 
@@ -64,6 +68,19 @@ public class Branch implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getIfsc() {
+        return this.ifsc;
+    }
+
+    public Branch ifsc(String ifsc) {
+        this.setIfsc(ifsc);
+        return this;
+    }
+
+    public void setIfsc(String ifsc) {
+        this.ifsc = ifsc;
     }
 
     public String getName() {
@@ -187,6 +204,7 @@ public class Branch implements Serializable {
         return "Branch{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", name='" + getIfsc() + "'" +
             ", address='" + getAddress() + "'" +
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +
