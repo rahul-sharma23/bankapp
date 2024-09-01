@@ -1,6 +1,7 @@
 export interface IBranch {
   id?: number;
   name?: string;
+  ifsc?: string;
   address?: string;
   city?: string;
   state?: string;

@@ -37,6 +37,7 @@ export const BranchDetail = () => {
             </span>
           </dt>
           <dd>{branchEntity.name}</dd>
+          <dd>{branchEntity.ifsc}</dd>
           <dt>
             <span id="address">
               <Translate contentKey="bankuiApp.branch.address">Address</Translate>
