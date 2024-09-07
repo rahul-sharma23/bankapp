@@ -1,7 +1,10 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.repository.CustomerRepository;
 import com.mycompany.myapp.service.CustomerService;
+import com.mycompany.myapp.service.UserService;
+import com.mycompany.myapp.service.dto.AdminUserDTO;
 import com.mycompany.myapp.service.dto.CustomerDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
@@ -39,11 +42,13 @@ public class CustomerResource {
     private String applicationName;
 
     private final CustomerService customerService;
+    private final UserService userService;
 
     private final CustomerRepository customerRepository;
 
-    public CustomerResource(CustomerService customerService, CustomerRepository customerRepository) {
+    public CustomerResource(CustomerService customerService, CustomerRepository customerRepository, UserService userService) {
         this.customerService = customerService;
+        this.userService = userService;
         this.customerRepository = customerRepository;
     }
 
@@ -61,6 +66,16 @@ public class CustomerResource {
             throw new BadRequestAlertException("A new customer cannot already have an ID", ENTITY_NAME, "idexists");
         }
         customerDTO = customerService.save(customerDTO);
+        AdminUserDTO userDTO = new AdminUserDTO();
+        userDTO.setEmail(customerDTO.getEmail());
+        userDTO.setFirstName(customerDTO.getFirstName());
+        userDTO.setLastName(customerDTO.getLastName());
+        userDTO.setLogin(customerDTO.getEmail());
+        userDTO.setActivated(true);
+        userDTO.setLangKey(Constants.DEFAULT_LANGUAGE);
+        //        userDTO.set("en");
+
+        userService.createUser(userDTO);
         return ResponseEntity.created(new URI("/api/customers/" + customerDTO.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, customerDTO.getId().toString()))
             .body(customerDTO);

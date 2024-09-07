@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service;
 
+import ch.qos.logback.core.CoreConstants;
 import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.domain.Authority;
 import com.mycompany.myapp.domain.User;
@@ -159,7 +160,9 @@ public class UserService {
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
+        String pw = RandomUtil.generatePassword();
+        //        System.out.println(pw);
+        String encryptedPassword = passwordEncoder.encode(pw);
         user.setPassword(encryptedPassword);
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
