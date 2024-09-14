@@ -2,7 +2,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './app.scss';
 import 'app/config/dayjs';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'reactstrap';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,11 +16,13 @@ import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import ErrorBoundary from 'app/shared/error/error-boundary';
 import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
+import { NavTabs } from './modules/tabs';
 
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
 export const App = () => {
   const dispatch = useAppDispatch();
+  const [activeKey, setActiveKey] = useState('1');
 
   useEffect(() => {
     dispatch(getSession());
@@ -39,19 +41,19 @@ export const App = () => {
     <BrowserRouter basename={baseHref}>
       <div className="app-container" style={{ paddingTop }}>
         <ToastContainer position="top-left" className="toastify-container" toastClassName="toastify-toast" />
-        <ErrorBoundary>
-          <Header
-            isAuthenticated={isAuthenticated}
-            isAdmin={isAdmin}
-            currentLocale={currentLocale}
-            ribbonEnv={ribbonEnv}
-            isInProduction={isInProduction}
-            isOpenAPIEnabled={isOpenAPIEnabled}
-          />
-        </ErrorBoundary>
         <div className="container-fluid view-container" id="app-view-container">
           <Card className="jh-card">
             <ErrorBoundary>
+              {
+                <NavTabs
+                  isAuthenticated={isAuthenticated}
+                  isAdmin={isAdmin}
+                  currentLocale={currentLocale}
+                  ribbonEnv={ribbonEnv}
+                  isInProduction={isInProduction}
+                  isOpenAPIEnabled={isOpenAPIEnabled}
+                />
+              }
               <AppRoutes />
             </ErrorBoundary>
           </Card>

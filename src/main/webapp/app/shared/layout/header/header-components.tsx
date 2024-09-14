@@ -12,13 +12,12 @@ export const BrandIcon = props => (
 );
 
 export const Brand = () => (
-  <NavbarBrand tag={Link} to="/" className="brand-logo">
+  <div>
     <BrandIcon />
     <span className="brand-title">
       <Translate contentKey="global.title">Bankui</Translate>
     </span>
-    <span className="navbar-version">{VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`}</span>
-  </NavbarBrand>
+  </div>
 );
 
 export const Home = () => (
